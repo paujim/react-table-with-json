@@ -20,7 +20,7 @@ function Copyright() {
 
 export default function App() {
   return (
-    <Container maxWidth="sm">
+    <Container >
       <Menu/>
       <MainView/>
       <Copyright/>

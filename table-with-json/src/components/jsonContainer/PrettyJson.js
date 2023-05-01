@@ -5,13 +5,16 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const json = {
-    "name": "John Doe",
-    "age": 32,
-    "email": "johndoe@example.com"
+import PropTypes from 'prop-types';
+
+PrettyJson.propTypes = {
+  json: PropTypes.object
 };
 
-export default function PrettyJson() {
+export default function PrettyJson(props) {
+
+    const {json} = props
+
     return (
         <Card sx={{ minWidth: 275 }}>
             <CardContent>
