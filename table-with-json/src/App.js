@@ -19,10 +19,15 @@ function Copyright() {
 }
 
 export default function App() {
+  const [query, setQuery] = React.useState('');
+
+  const onSubmit= (event)=> {
+    setQuery(event)
+  };
   return (
     <Container >
-      <Menu/>
-      <MainView/>
+      <Menu onSubmit={onSubmit}/>
+      <MainView query={query}/>
       <Copyright/>
     </Container>
   );

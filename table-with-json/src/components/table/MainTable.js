@@ -9,21 +9,20 @@ import Paper from '@mui/material/Paper';
 import PropTypes from 'prop-types';
 
 MainTable.propTypes = {
-  rows: PropTypes.arrayOf(PropTypes.object)
+  rows: PropTypes.arrayOf(PropTypes.object),
+  headers: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default function MainTable(props) {
-const {rows} = props;
+  const { rows, headers } = props;
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ minWidth: 650 }} aria-label="main table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            {headers.map((header) => (
+              <TableCell key={header}>{header}</TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -32,13 +31,11 @@ const {rows} = props;
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell >{row.name}</TableCell>
+              <TableCell >{row.calories}</TableCell>
+              <TableCell >{row.fat}</TableCell>
+              <TableCell >{row.carbs}</TableCell>
+              <TableCell >{row.protein}</TableCell>
             </TableRow>
           ))}
         </TableBody>

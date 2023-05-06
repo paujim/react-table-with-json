@@ -5,8 +5,12 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import SearchIcon from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TextField from '@mui/material/TextField';
+import PropTypes from 'prop-types';
+
+Menu.propTypes = {
+  onSubmit: PropTypes.func,
+};
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -18,39 +22,38 @@ const Search = styled('div')(({ theme }) => ({
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: 'auto',
-
 }));
 
 
-export default function PrimarySearchAppBar() {
-    // const [searchData, setSearchData] = React.useState('');
+export default function Menu(props) {
+    const {onSubmit } = props;
+    const [query, setQuery] = React.useState('');
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
-                        size="large"
-                        color="inherit"
-                    >
-                        <SearchIcon />
-                    </IconButton>
                     <Search>
                         <TextField
+                            onChange={(event) => {
+                                setQuery(event.target.value);
+                              }}
+                            sx={{ minWidth: 600 }}
                             id="search-required"
                             type="search"
                             placeholder="Search"
                             inputProps={{
                                 'aria-label': 'description',
                                 'color': 'inherit',
-                                'width': 'auto'
                             }}
                         />
                     </Search>
                     <IconButton
                         size="large"
                         color="inherit"
+                        onClick={ ()=>onSubmit(query)}
                     >
-                        <ChevronRightIcon />
+                        <SearchIcon />
                     </IconButton>
                 </Toolbar>
             </AppBar>
