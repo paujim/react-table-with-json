@@ -22,8 +22,19 @@ export default function MainView(props) {
         async function fetchData() {
             const ds = await API.fetchDataSet(query)
             setDataSet(ds)
+        }
+        fetchData();
+
+    }, [query]);
+    React.useEffect(() => {
+        async function fetchData() {
             const details = await API.fetchDetails(query)
             setDetails(details)
+        }
+        fetchData();
+    }, [query]);
+    React.useEffect(() => {
+        async function fetchData() {
             const rawJson = await API.fetchJson(query)
             setRawJson(rawJson)
         }
