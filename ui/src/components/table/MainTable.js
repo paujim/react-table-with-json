@@ -26,16 +26,14 @@ export default function MainTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows.map((row, index) => (
             <TableRow
-              key={row.name}
+              key={index}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell >{row.name}</TableCell>
-              <TableCell >{row.calories}</TableCell>
-              <TableCell >{row.fat}</TableCell>
-              <TableCell >{row.carbs}</TableCell>
-              <TableCell >{row.protein}</TableCell>
+              { Object.keys(row).map((k) => (
+                  <TableCell key={k}>{row[k]}</TableCell>
+                ))}
             </TableRow>
           ))}
         </TableBody>

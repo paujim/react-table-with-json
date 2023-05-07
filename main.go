@@ -1,19 +1,24 @@
 package main
 
 import (
-	"log"
-	"net/http"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
+	"github.com/paujim/react-table-with-json/handler"
 )
 
 func main() {
-	fs := http.FileServer(http.Dir("./ui/build"))
-	http.Handle("/", fs)
+	e := echo.New()
 
-	log.Print("Listening on :5000...")
+	app := handler.NewApp(0)
 
-	err := http.ListenAndServe(":5000", nil)
-	if err != nil {
-		log.Fatal(err)
-	}
+	e.Use(middleware.Logger())
+	e.Static("/", "./ui/build")
+	g := e.Group("api")
+	g.Use(middleware.CORS())
+	g.GET("/", app.HealthCheck)
+	g.GET("/json", app.RawJson)
+	g.GET("/ds", app.DataSet)
+	g.GET("/details", app.Details)
 
+	e.Logger.Fatal(e.Start(":5000"))
 }
