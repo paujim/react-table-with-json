@@ -9,7 +9,7 @@ import (
 
 func (a *app) RawJson(c echo.Context) error {
 	var fakeData model.Data
-	a.faker.Struct(&fakeData)
+	_ = a.faker.Struct(&fakeData)
 
 	return c.JSON(http.StatusOK, fakeData)
 }

@@ -14,7 +14,7 @@ func (a *app) DataSet(c echo.Context) error {
 	data := []model.DataSet{}
 	for i := 0; i < n; i++ {
 		var fakeDS model.DataSet
-		a.faker.Struct(&fakeDS)
+		_ = a.faker.Struct(&fakeDS)
 		data = append(data, fakeDS)
 	}
 

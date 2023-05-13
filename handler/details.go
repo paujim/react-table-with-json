@@ -13,7 +13,7 @@ func (a *app) Details(c echo.Context) error {
 	data := []model.Details{}
 	for i := 0; i < n; i++ {
 		var fakeDetails model.Details
-		a.faker.Struct(&fakeDetails)
+		_ = a.faker.Struct(&fakeDetails)
 		data = append(data, fakeDetails)
 	}
 
